@@ -1,0 +1,637 @@
+You are rebuilding a complete multi-file static website for "SKY-LAB Analytical 
+Laboratory" — a premium environmental & analytical testing lab in Bhiwandi, 
+Maharashtra, India. The site is a single-page scrolling experience with a 
+luxury editorial aesthetic (deep forest green + warm gold on cream).
+
+You must produce EXACTLY 4 files:
+1. index.html
+2. style.css
+3. responsive.css
+4. script.js
+
+No frameworks. No build step. Pure HTML/CSS/vanilla JS. All paths are relative.
+
+═══════════════════════════════════════════════════════════════════
+SECTION 1 — BRAND IDENTITY & DESIGN TOKENS
+═══════════════════════════════════════════════════════════════════
+
+COMPANY:
+- Name: SKY-LAB Analytical Laboratory
+- Marathi name: स्कायलॅब ॲनालिटिकल लॅबोरेटरी
+- Slogan: "Beyond Testing. Building Trust."
+- Founded: 1991
+- Location: 202, CFC-3, Asmita Texpa, Plot No. 1, Additional Kalyan-Bhiwandi 
+  Industrial Area, MIDC, Village Kon, Bhiwandi, Thane – 421311, Maharashtra, India
+- Phones: 9867577309, 9867577312, 9867577310
+- Email: mails@skylabenviro.com
+- Website: https://skylabenviro.com
+- Google Maps: 19.258206, 73.103912
+
+COLOR PALETTE (define as CSS :root variables — use these EXACT values):
+--primary:      #062E26   (deep forest green — main dark brand color)
+--secondary:    #0B4437   (lighter forest green)
+--accent:       #C9A45C   (warm gold — primary accent)
+--accent-soft:  #E1C98A   (light gold — gradient partner)
+--bg:           #F4F1E8   (warm cream — light section background)
+--bg-warm:      #FAF8F3   (lighter cream — alternate sections)
+--dark:         #031B17   (near-black green — dark sections)
+--darker:       #021410   (deepest — preloader, footer, mobile menu)
+--white:        #FFFFFF
+--text:         #1a1a1a
+--text-mid:     #4a4a4a
+--text-light:   #7a7a7a
+--text-on-dark: #c8c8c8
+--gold-glow:    rgba(201, 164, 92, 0.15)
+
+GOLD GRADIENT (used on buttons, headings, accents):
+linear-gradient(135deg, #C9A45C, #E1C98A)
+
+TYPOGRAPHY (Google Fonts — load via <link>):
+- Headings:  'Cormorant Garamond' (weights 400,500,600,700) — elegant serif
+- Body:      'Manrope' (weights 300,400,500,600,700,800) — clean sans
+- Technical: 'Space Grotesk' (weights 400,500,600,700) — labels, tags, numbers
+
+Font usage rules:
+- --font-heading: Cormorant Garamond for all h1/h2/h3 and stat numbers
+- --font-body:    Manrope for paragraphs, nav, buttons, forms
+- --font-tech:    Space Grotesk for small caps tags, section labels, 
+                  instrumentation codes (AAS, GC, etc.)
+
+RADII & SPACING:
+--radius:      16px   (cards)
+--radius-sm:   10px
+--radius-xs:   6px
+--radius-full: 100px  (pills, buttons)
+
+EASING:
+--ease:        cubic-bezier(0.25, 0.46, 0.45, 0.94)
+--ease-out:    cubic-bezier(0.22, 1, 0.36, 1)
+--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1)
+
+Z-INDEX SCALE:
+--z-navbar:       100
+--z-mobile-menu:  1000
+--z-lightbox:     2000
+--z-preloader:    3000
+
+LAYOUT:
+- .container: max-width 1280px, margin auto, padding 0 clamp(20px, 5vw, 60px)
+- Desktop nav height: 72px (--nav-h)
+- Mobile nav height: 60px (--nav-h-mobile)
+
+═══════════════════════════════════════════════════════════════════
+SECTION 2 — ASSET PATHS (MANDATORY — use these EXACT relative paths)
+═══════════════════════════════════════════════════════════════════
+
+LOGO:
+  logo/LOGO SKY LAB.png
+  → used in: preloader (large), navbar (circular 44px icon)
+
+HERO VIDEO:
+  img/hero.mp4                       (primary, type video/mp4)
+  images/hero/hero-video.webm        (fallback, type video/webm)
+  images/hero/hero-poster.jpg        (poster attribute)
+  Autoplay, muted, loop, playsinline, preload="metadata"
+
+SERVICE CARD IMAGES (img/ folder — exact filenames):
+  img/eviroment montoring.jpg
+  img/Ambient & Stack Air Monitoring.jpg
+  img/Water & Wastewater.jpg
+  img/Soil Testing & Analysis.jpg
+  img/Noise, Vibration & Illumination.jpg
+  img/Food Testing & Analysis.jpg
+  img/Microbiological Testing.jpg
+  img/Fibre & Fabric Testing.jpg
+  img/Chemical & Eco Testing.jpg
+  img/Environmental Consultancy.jpg
+  img/MPCB Consent Management.jpg
+  img/Safety & Energy Audit.jpg
+  img/ETP & STP Projects.jpg
+  img/RO & Water Treatment Plants.jpg
+  img/Analytical Instrumental Training.jpg
+  img/EHS & Fire Safety.jpg
+  img/R&D Centre.jpg
+  img/Contract Research.jpg
+
+CERTIFICATE IMAGES (certificate/ folder):
+  certificate/Certifications_page-0001.jpg  → NABL Accredited
+  certificate/Certifications_page-0002.jpg  → ISO/IEC 17025
+  certificate/Certifications_page-0003.jpg  → Government Recognized
+  certificate/Certifications_page-0004.jpg  → Government Recognized
+  certificate/Certifications_page-0005.jpg  → Government Recognized
+  certificate/Certifications_page-0006.jpg  → Government Recognized
+
+INDUSTRY LOGOS (icone/ folder — note: "icone" not "icon"):
+  icone/Bharat-Petroleum.png     → label: Pharmaceuticals
+  icone/birla group.png          → label: Chemicals
+  icone/CEAT.png                 → label: Infrastructure
+  icone/dedo.png                 → label: Oil & Gas
+  icone/godrej.png               → label: Manufacturing
+  icone/hp.png                   → label: Textiles
+  icone/LT.png                   → label: Food
+  icone/Mmrda-logo.svg_.png      → label: Logistics
+  icone/Reliance.png             → label: Government
+  icone/tata.png                 → label: Construction
+  icone/tcs.png                  → label: Construction
+
+IMPORTANT: All filenames contain spaces, ampersands, and mixed case. 
+Preserve them EXACTLY as listed. Do NOT rename or lowercase.
+
+═══════════════════════════════════════════════════════════════════
+SECTION 3 — HTML STRUCTURE (index.html)
+═══════════════════════════════════════════════════════════════════
+
+<HEAD> requirements:
+- charset UTF-8, viewport width=device-width, maximum-scale=5.0
+- SEO: description, keywords, author, canonical = https://skylabenviro.com
+- Open Graph: og:title, og:description, og:type=website, og:url
+- Twitter: twitter:card = summary_large_image
+- JSON-LD schema: @type "Laboratory" with name, alternateName (Marathi), 
+  url, telephone +919867577309, email, full PostalAddress, foundingDate 1991, 
+  description, slogan
+- Google Fonts preconnect + stylesheet link (3 families listed above)
+- <link rel="stylesheet" href="style.css">
+- <link rel="stylesheet" href="responsive.css">
+- <script src="script.js"> at END of body
+
+BODY STRUCTURE (in this order):
+
+1. PRELOADER  (#preloader)
+   - Centered circle with SKY-LAB logo image
+   - Progress bar underneath
+   - Text: "Beyond Testing. Building Trust."
+   - Auto-hides after ~2.2 seconds on window load
+
+2. NAVBAR  (#navbar, class="navbar", role="banner")
+   - Fixed floating pill at top, blurred glass dark background
+   - Left: circular logo (44px) with img/logo/LOGO SKY LAB.png
+   - Center: nav links — Home, About, Services, Expertise, Projects, Contact
+     (each has class="nav-link" and data-section matching section id)
+   - Right: "Get a Quote" CTA button (gold gradient pill with arrow SVG)
+   - Hamburger (3 lines) — hidden on desktop, visible ≤960px
+   - On scroll >60px: adds .scrolled class (darker bg, tighter padding)
+   - When mobile menu open: body gets .menu-open, navbar fades out
+
+3. MOBILE MENU  (#mobileMenu, class="mobile-menu")
+   - Right-side slide-in panel (width min(340px, 85vw), bg --darker)
+   - Close button (X) top-right of panel
+   - Header: logo circle + "SKY-LAB" text
+   - Links: same 6 sections
+   - "Get a Quote" CTA at bottom
+   - Footer text: slogan + credit line
+   - Backdrop (dark blurred) closes on click
+   - Escape key closes
+
+4. HERO  (#hero, class="hero")
+   - Full viewport (min-height 100vh)
+   - Background <video> with hero.mp4 + webm fallback + poster
+   - Dark overlay (radial + linear gradients for depth)
+   - Badge pill: "NABL Accredited Laboratory · Since 1991"
+   - H1 with 3 lines:
+       "WHERE SCIENCE"      (white)
+       "MEETS THE"          (gold gradient)
+       "ENVIRONMENT."       (white)
+   - Subtitle: "Precision testing for a safer, cleaner tomorrow."
+   - Two buttons: "Explore SKY-LAB" (gold) + "Get a Quote" (glass)
+   - Scroll cue at bottom (animated vertical line + "Scroll" text)
+   - Padding-top: calc(var(--nav-h) + 40px) to avoid nav overlap
+
+5. STORY SCROLL  (#storyScroll, class="story-scroll")
+   - Dark bg (#darker), single horizontal auto-looping strip
+   - 6 circular icon items: Nature, Water, Industry, Laboratory, Testing, Data
+   - Each has an inline SVG icon (dark green + gold strokes)
+   - 5 dotted-line connectors between items
+   - Duplicated in JS for seamless infinite loop
+   - Pauses on hover/touch
+
+6. ABOUT  (#about, class="about", bg --bg-warm)
+   - 2-column grid (1fr 1fr → 1fr on mobile)
+   - Left: "SINCE 1991" tag, H2 "Science with Purpose." (Purpose in gold),
+     paragraph, 5 pill chips (Environmental Testing, Analytical Services, 
+     Consultancy, Training, R&D), "Discover Our Story" text link
+   - Right: 2x2 stats board of 4 white cards:
+       35+ Years Experience
+       1000+ Testing Parameters
+       400+ Clients Served
+       50+ Expert Analysts
+     (Numbers animate via countUp on scroll — data-target attribute)
+
+7. SERVICES  (#services, class="services", bg --dark)
+   - Tag "OUR SERVICES", H2 "What We Measure. What We Protect."
+   - Horizontal scrollable filter pill bar (#srvFilter) with buttons:
+       All · Environment · Food · Textile · Consultancy · Turnkey · 
+       Training · R&D
+     Each button: data-filter="environment|food|textile|consultancy|
+     turnkey|training|rnd|all"
+   - "Swipe to explore" hint
+   - Horizontal card track (#srvTrack, draggable) with 18 <article> cards
+     Each card: class="srv-card" data-cat="<category>"
+     Structure: image (uses img/ paths above), category label, h3 title, 
+     short description, circular arrow icon
+     Cards:
+       ENVIRONMENT (5): Environmental Monitoring, Ambient & Stack Air 
+         Monitoring, Water & Wastewater, Soil Testing & Analysis, 
+         Noise Vibration & Illumination
+       FOOD (2): Food Testing & Analysis, Microbiological Testing
+       TEXTILE (2): Fibre & Fabric Testing, Chemical & Eco Testing
+       CONSULTANCY (3): Environmental Consultancy, MPCB Consent 
+         Management, Safety & Energy Audit
+       TURNKEY (2): ETP & STP Projects, RO & Water Treatment Plants
+       TRAINING (2): Analytical Instrumental Training, EHS & Fire Safety
+       R&D (2): R&D Centre, Contract Research
+     Clicking a filter hides non-matching cards (.filter-hide)
+
+8. PROCESS  (class="process", bg --bg)
+   - Tag "OUR PROCESS", H2 "One Sample. Many Answers.", subtitle
+   - Auto-scrolling horizontal track (#procTrack) with 6 steps + arrows:
+       01 Sample — Collection & preservation
+       02 Analyse — Instrument-grade testing
+       03 Verify — Quality assurance check
+       04 Report — Detailed documentation
+       05 Decide — Data-driven decisions
+       06 Improve — Continuous advancement
+     Each step: number, circular icon (inline SVG), h3, p
+     Gold arrow SVGs between steps animate left→right
+   - Touch pauses; hover pauses
+
+9. EXPERTISE  (#expertise, bg --primary)
+   - Tag "EXPERTISE", H2 "Precision in Every Parameter."
+   - Auto-scroll track (#expTrack) with 8 icon cards:
+       Air, Water, Soil, Noise, Emissions, Food, Textile, Compliance
+     Each: SVG icon (line-art, gold+green), h3, one-line description
+
+10. GALLERY  (#gallery, class="gallery", bg --bg-warm)
+    - Tag "GALLERY", H2 "Behind Every Result.", subtitle
+    - TWO LAYOUTS:
+      A) DESKTOP (≥1024px): 7-tile CSS Grid collage (.gal-collage, #galCollage)
+         Grid: 3 cols (1.5fr 1fr 1fr), 3 rows of 240px
+         Tiles: 
+           gc-1 spans (col 1, rows 1-2) — Laboratory Analysis
+           gc-2 (col 2, row 1) — Field Sampling
+           gc-3 (col 3, row 1) — Precision Instruments
+           gc-4 spans (col 2-3, row 2) — Water Testing
+           gc-5 (col 1, row 3) — Team at Work
+           gc-6 (col 2, row 3) — Air Monitoring
+           gc-7 (col 3, row 3) — Industrial Projects
+         Each tile: dark gradient bg + inline SVG placeholder, overlay with 
+         tag + title + ↗ arrow on hover, tabindex="0", data-title, data-desc
+         Staggered reveal via --gc-delay custom prop (0ms,120ms,...620ms)
+      B) MOBILE (<1024px): Auto-scroll horizontal track (#galTrack) 
+         with 7 cards (same content), each .gal-card, swipe-hint above
+    - Clicking any tile/card opens LIGHTBOX
+
+11. LIGHTBOX  (#lightbox, class="lightbox")
+    - Fullscreen modal, dark blurred bg
+    - Close (×) top-right, prev/next arrows mid-left/right
+    - Body: cloned image/content, title (#lbTitle), description (#lbDesc)
+    - Keyboard: Esc closes, ←/→ navigates
+    - Click backdrop closes
+
+12. TECHNOLOGY  (class="technology", bg --bg)
+    - Tag "TECHNOLOGY", H2 "Precision Needs the Right Tools."
+    - Auto-scroll track (#techTrack) with 6 instrument cards:
+       AAS — Atomic Absorption Spectrophotometer
+       GC — Gas Chromatography
+       UV-VIS — UV-Visible Spectrophotometer
+       HPLC — High-Performance Liquid Chromatography
+       BOD — BOD Incubator System
+       SLM — Sound Level Meter
+     Each: large gold 3-letter abbreviation in a soft gradient box, 
+     h3 full name, short description
+
+13. CERTIFICATIONS  (#certifications, class="certs", bg --dark)
+    - Tag "ACCREDITATION", H2 "Tested. Verified. Trusted."
+    - Auto-scroll track (#certTrack) with 6 white cert cards:
+       Each: .cert-image wrapper (190px height, white bg, contain-fit img)
+       showing certificate/Certifications_page-XXXX.jpg
+       + h3 (NABL Accredited / ISO/IEC 17025 / Government Recognized)
+       + p description
+
+14. NUMBERS  (class="numbers", gradient bg --secondary → --primary)
+    - Auto-scroll track (#numTrack) with 5 items:
+       1991 (data-type="year") — Established
+       1000+ — Testing Parameters
+       400+ — Clients Served
+       50+ — Expert Team
+       35+ — Years Experience
+    - Numbers use Cormorant, white; suffix "+" in gold
+    - Each value has data-target for countUp
+
+15. INDUSTRIES  (class="industries", bg --bg-warm)
+    - Tag "INDUSTRIES", H2 "Science That Moves with Industry."
+    - Auto-scroll track (#indTrack) with 11 cards
+    - Each: circular 90px icon container (bg --bg-warm) with 
+      <img src="icone/..."> at 58x58 contain, plus label span
+    - Labels: Pharmaceuticals, Chemicals, Infrastructure, Oil & Gas, 
+      Manufacturing, Textiles, Food, Logistics, Government, Construction 
+      (x2 — tata and tcs both label "Construction")
+
+16. PROJECTS  (#projects, bg rgba(220,223,186,0.744))
+    - Tag "PROJECTS", H2 "Work That Speaks.", swipe hint
+    - Manual drag-scroll track (#projTrack) with 5 cards:
+       01 Industrial Zone Air Quality Assessment — Manufacturing · Maharashtra
+       02 Municipal Water Quality Surveillance — Government · Maharashtra
+       03 Food Safety Compliance Program — Food Industry · India
+       04 MPCB Compliance & Consent Management — Infrastructure · Thane
+       05 Complete Lab Setup & Commissioning — Pharmaceuticals · Maharashtra
+    - Each card: gradient placeholder block showing big gold 01-05 number, 
+      tag, title, location, "View Project" link
+
+17. REVIEWS  (class="reviews", bg --white)
+    - Tag "TESTIMONIALS", H2 "Trust, In Their Words." (center)
+    - Star rating row: ★★★★½ "4.4 · Verified Reviews"
+    - Auto-scroll track (#revTrack) with 3 testimonial cards
+    - Each: quote-mark SVG top-right, italic paragraph, avatar circle 
+      with initial letter, name + company
+
+18. FINAL CTA  (class="final-cta", gradient bg)
+    - Centered: H2 "Your Question. Our Analysis." (2nd line gold)
+    - Paragraph: "Let's build a safer, compliant and sustainable tomorrow."
+    - Two buttons: "Start a Conversation" (gold) + "Request a Quote" (outline)
+
+19. CONTACT  (#contact, class="contact", bg --bg-warm)
+    - Tag "CONTACT", H2 "Your Question. Our Analysis."
+    - 2-column grid (.contact-grid):
+      LEFT (.contact-card): 
+        - Brand block: h3 name, tagline
+        - 3 ci-items: map-pin icon + address (4 lines), phone icon + 3 
+          tel: links, mail icon + mailto: link
+        - "View on Google Maps →" button (gold-accented outline)
+      RIGHT (.contact-card): contact form (#contactForm)
+        Fields:
+          Name* (required, min 2 chars)
+          Company (optional)
+          Phone* (required, exactly 10 digits, Indian regex /^[6-9]\d{9}$/,
+                  input strips non-digits, maxlength 10)
+          Email (optional but validated if filled)
+          Service Required (select with 9 options: Environmental, Food, 
+            Textile, Consultancy, Turnkey, Training, R&D, MPCB, Other)
+          Message (textarea, 4 rows)
+          Submit button — 3 states: default "Send Enquiry", 
+            loading (spinning SVG), success (✓ Sent Successfully)
+        On submit: validate → show inline errors → simulate 1.6s delay → 
+        show success 3.5s → reset form
+
+20. FOOTER  (class="footer", bg --darker)
+    - 4-column grid: brand, Quick Links, Services, Contact
+    - Brand: circle logo, SKY-LAB wordmark, tagline, Marathi name
+    - Bottom bar: copyright "© 2026 SKY-LAB Analytical Laboratory. 
+      All Rights Reserved." + developer credit
+
+═══════════════════════════════════════════════════════════════════
+SECTION 4 — CSS FILES
+═══════════════════════════════════════════════════════════════════
+
+style.css:
+- Contains the :root variables (Section 1)
+- Global reset (* { margin:0; padding:0; box-sizing:border-box })
+- html { scroll-behavior: smooth; -webkit-text-size-adjust: 100% }
+- body { font-family Manrope, bg --bg, overflow-x hidden, 
+         -webkit-font-smoothing: antialiased }
+- All section styles (preloader, navbar, mobile menu, hero, story, about, 
+  services, process, expertise, gallery + collage, lightbox, technology, 
+  certs, numbers, industries, projects, reviews, final CTA, contact, footer)
+- Animation utilities:
+    .animate-in / .anim-in — opacity 0, translateY(28px), transitions to 
+      visible via .visible class added by IntersectionObserver
+    data-delay="1..5" — staggered transition-delays (0.12s increments)
+    .hero .animate-in — CSS keyframe fadeIn with animation-delay per 
+      data-delay attribute
+- @media (prefers-reduced-motion: reduce) — disables all animations
+
+responsive.css:
+- Breakpoints: 1440, 1100, 960, 768, 480, 360, plus landscape + print
+- At ≤960px: hide .nav-links & .nav-cta, show .hamburger, navbar full width
+- At ≤768px: mobile hero padding-top calc(--nav-h-mobile + 50px), 
+  service cards become fixed-width (flex 0 0 270px), gallery mobile-only 
+  (hide .gal-collage display none by default in style.css — desktop-only 
+  via min-width:1024px media query)
+- At ≤480px: smaller fonts, stats grid 1fr 1fr (or 1fr at 360px)
+- Print: hide nav, hamburger, hero video, preloader, etc.
+
+═══════════════════════════════════════════════════════════════════
+SECTION 5 — JAVASCRIPT BEHAVIOR (script.js)
+═══════════════════════════════════════════════════════════════════
+
+All wrapped in IIFE with 'use strict'.
+
+1. PRELOADER
+   On window load → setTimeout 2200ms → add .hidden class to #preloader, 
+   then call initObservers(), initAutoScrollers(), initGalleryReveal()
+
+2. NAVBAR & MOBILE MENU
+   - Scroll listener (passive): toggle .scrolled at scrollY > 60
+   - Hamburger toggles mobile menu open/close
+   - openMobile(): adds .active to hamburger & menu, sets aria, 
+     body.classList.add('menu-open') (fades navbar via CSS), body overflow hidden
+   - closeMobile(): reverses
+   - Close on: X button, backdrop click, any mm-link click, mm-cta click, 
+     Escape key
+   - updateActiveNav(): compares scrollY+160 against each section's 
+     offsetTop/offsetHeight, sets .active on matching .nav-link
+
+3. SCROLL ANIMATIONS (initObservers)
+   - IntersectionObserver on all .anim-in, threshold 0.08
+   - Adds .visible class; honors data-delay attribute (×120ms)
+   - Also calls initCounters()
+
+4. COUNTERS (initCounters)
+   - Targets .stat-num and .num-val elements
+   - First: if text is "0" or empty, immediately set to data-target 
+     (fallback so clones never show 0)
+   - IntersectionObserver threshold 0.3 → countUp()
+   - countUp(el, 0, target, dur): RAF-based, cubic ease-out
+   - Refresh cloned counters after auto-scroll duplication
+
+5. SERVICE FILTER
+   - Listen for clicks on .srv-filter-btn
+   - Toggle .active class, update aria-selected
+   - Read data-filter value
+   - For each .srv-card: hide (.filter-hide) if data-cat doesn't match 
+     and filter ≠ 'all'
+   - Reset track scroll to 0 smoothly
+
+6. DRAG-SCROLL for .srv-track and .proj-track
+   - mousedown/mousemove/mouseup/mouseleave events
+   - Adjusts scrollLeft by delta × 1.5
+
+7. STORY SCROLL
+   - Duplicate innerHTML of #ssTrack for seamless loop
+   - Pause animation-play-state on touchstart, resume on touchend
+
+8. AUTO-SCROLL ENGINE (initAutoScroller)
+   - RAF-based, translateX transform (NOT scrollLeft)
+   - Each track: originalHTML + originalHTML (duplicated for seamless)
+   - measure(): halfWidth = trackEl.scrollWidth / 2
+   - tick(): position -= speed; if -position >= halfWidth, position += halfWidth
+   - Pause on: mouseenter, touchstart, offscreen (IntersectionObserver)
+   - Resume on: mouseleave, touchend (after 1.5s delay), onscreen
+   - Speed values used:
+       procTrack: 0.5
+       expTrack:  0.5
+       techTrack: 0.5
+       certTrack: 0.4
+       numTrack:  0.4
+       indTrack:  0.5
+       revTrack:  0.4
+       galTrack:  0.5
+   - Skipped entirely if prefers-reduced-motion
+
+9. GALLERY REVEAL (initGalleryReveal)
+   - IntersectionObserver on .gal-heading, .gal-sub (threshold 0.2) 
+     → add .visible
+   - IntersectionObserver on .gc-item (threshold 0.1, rootMargin 
+     '0px 0px -60px 0px') → add .visible (staggered via CSS --gc-delay)
+
+10. GALLERY LIGHTBOX
+    - refreshGalCards(): 
+        If window ≥1024px → use .gc-item elements (collage)
+        Else → use .gal-card elements but SLICE TO FIRST HALF 
+               (because auto-scroller duplicates them)
+    - openLB(card): clone card's .gal-img or .gc-img into #lbImage, 
+      set title/description from data attrs, show modal
+    - closeLB(): hide, restore body scroll
+    - navLB(dir): cycle index, reopen
+    - Triggers: click on .gal-card or .gc-item, Enter/Space when focused, 
+      prev/next buttons, Esc, Arrow keys, backdrop click
+
+11. CONTACT FORM
+    - Prevent default on submit
+    - Validate Name (required, ≥2 chars), Phone (required, 
+      /^[6-9]\d{9}$/), Email (optional, standard regex if filled)
+    - showErr(id, msg) / clearErrors() helpers
+    - Input listeners clear errors on typing
+    - Phone input strips non-digits, slices to 10
+    - On valid: submitBtn.classList.add('loading') → 1.6s → remove 
+      loading, add 'success' → 3.5s → remove success, form.reset()
+
+12. SMOOTH SCROLL
+    - All a[href^="#"] → preventDefault, scrollTo target.offsetTop - 80 
+      with behavior smooth
+
+13. PREVENT HORIZONTAL OVERFLOW
+    - body.style.overflowX = 'hidden'
+    - documentElement.style.overflowX = 'hidden'
+
+═══════════════════════════════════════════════════════════════════
+SECTION 6 — RESPONSIVE BEHAVIOR RULES
+═══════════════════════════════════════════════════════════════════
+
+Desktop (≥1024px):
+- Full navbar with links + CTA
+- Gallery uses COLLAGE grid, mobile track hidden
+- Services & Projects: manual drag-scroll only
+- All other tracks: auto-scroll
+
+Tablet (768–1023px):
+- Hamburger menu active
+- Gallery uses mobile-style track
+- Collage hidden
+
+Mobile (≤768px):
+- Hero padding-top accounts for nav height + 50px
+- Service cards: fixed 270px width
+- Stats board: 2 columns
+- Form fields stack (cf-row → 1fr)
+- Footer: 1 column, brand full width
+- Mobile menu panel: min(360px, 90vw)
+
+Small mobile (≤480px):
+- Reduced font sizes everywhere
+- Stats board may go 1 column
+- Service cards: 250px
+
+Extra small (≤360px):
+- Stats board: 1 column
+- Mobile menu: 100vw
+
+Landscape ≤500px height:
+- Hero: min-height auto, reduced padding, hide scroll cue
+
+Print:
+- Hide: navbar, hamburger, mobile menu, hero video, scroll cue, 
+  swipe hints, lightbox, preloader, backgrounds, story track, 
+  service filter
+- body white, text black
+- Hero min-height auto, no page-break-inside on sections
+
+═══════════════════════════════════════════════════════════════════
+SECTION 7 — CRITICAL IMPLEMENTATION NOTES
+═══════════════════════════════════════════════════════════════════
+
+1. The auto-scroll engine DUPLICATES track content in JS. This means 
+   any <img> in those tracks loads twice. Use loading="lazy" on 
+   cert images to mitigate.
+
+2. Counters (stat-num, num-val) appear BOTH in static sections (About 
+   stats) and inside auto-scrolling tracks (Numbers section). The 
+   refreshClonedCounters logic ensures clones show the final value 
+   immediately rather than animating from 0 again.
+
+3. Gallery has TWO completely separate DOM trees — .gal-collage for 
+   desktop (static grid) and .gal-track for mobile (auto-scroll). 
+   Both must be present in HTML; CSS media queries show/hide 
+   appropriately.
+
+4. Service filter cards and project cards are NOT auto-scrolled — 
+   they're manual drag-scroll only, so they use native 
+   `overflow-x: auto` + `scroll-snap-type: x mandatory`.
+
+5. The floating navbar uses `position: fixed; top: 16px; left: 50%; 
+   transform: translateX(-50%); width: calc(100% - 32px); max-width: 
+   960px` with a pill-shaped blurred dark background.
+
+6. When mobile menu opens, body gets class "menu-open" and CSS 
+   fades the navbar to opacity 0 / visibility hidden — this prevents 
+   the hamburger from being clickable behind the menu (which has 
+   higher z-index).
+
+7. Preloader is a fullscreen dark overlay with a pulsing gold ring 
+   around the logo, a progress bar that animates 0→100% in 2s via 
+   CSS keyframes, and an italic slogan underneath.
+
+8. All gold gradient text uses: 
+   background: linear-gradient(135deg, #C9A45C, #E1C98A);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+
+9. Icons throughout are INLINE SVGs (not icon fonts). Styles:
+   - stroke="#C9A45C" for gold lines
+   - stroke="currentColor" or stroke="#0B4437" for green
+   - No fill except small opacity dots for decoration
+   - viewBox typically 40x40 or 48x48
+
+10. Section background rhythm alternates:
+    --bg-warm (about) → --dark (services) → --bg (process) → 
+    --primary (expertise) → --bg-warm (gallery) → --bg (technology) → 
+    --dark (certs) → gradient (numbers) → --bg-warm (industries) → 
+    rgba(220,223,186,0.744) (projects) → --white (reviews) → 
+    gradient (final CTA) → --bg-warm (contact) → --darker (footer)
+
+═══════════════════════════════════════════════════════════════════
+SECTION 8 — DELIVERABLES
+═══════════════════════════════════════════════════════════════════
+
+Output the complete contents of all 4 files in this order:
+1. index.html
+2. style.css
+3. responsive.css
+4. script.js
+
+Each file must be complete, syntactically valid, and production-ready. 
+Do not abbreviate or use "// ... rest of code" placeholders. Write out 
+every rule, every property, every function.
+
+The site must work offline as static files with the folder structure:
+  /index.html
+  /style.css
+  /responsive.css
+  /script.js
+  /logo/LOGO SKY LAB.png
+  /img/ (18 jpg + 1 mp4)
+  /images/hero/ (webm + jpg poster)
+  /certificate/ (6 jpg)
+  /icone/ (11 png logos)
+
+Begin now.

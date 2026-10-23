@@ -1,0 +1,242 @@
+/* ============================================================
+   SKY-LAB — responsive.css
+   Breakpoints: 1440, 1100, 960, 768, 480, 360 + landscape + print
+   ============================================================ */
+
+/* ---------- 1440px ---------- */
+@media (max-width:1440px){
+  .container{max-width:1180px;}
+}
+
+/* ---------- 1100px ---------- */
+@media (max-width:1100px){
+  .container{max-width:1000px;}
+  .about-grid{gap:40px;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1.4fr 1fr 1fr;gap:32px;}
+  .footer-grid .f-col:last-child{grid-column:span 3;}
+}
+
+/* ---------- 960px ---------- */
+@media (max-width:960px){
+  :root{--nav-h:60px;}
+
+  .nav-links,
+  .nav-cta{display:none;}
+  .hamburger{display:flex;}
+
+  .navbar{
+    width:calc(100% - 20px);
+    top:10px;
+    border-radius:var(--radius);
+  }
+  .nav-inner{padding:0 16px 0 10px;}
+
+  .gal-collage{display:none !important;}
+  .gal-swipe{display:block;}
+
+  .hero{padding-top:calc(var(--nav-h-mobile) + 50px);}
+
+  .srv-track,.proj-track{
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .stats-board{gap:14px;}
+}
+
+/* ---------- 768px ---------- */
+@media (max-width:768px){
+  section{padding:60px 0;}
+  h2{font-size:clamp(1.8rem,6vw,2.4rem);}
+
+  .hero{
+    min-height:100vh;
+    padding-top:calc(var(--nav-h-mobile) + 50px);
+    padding-bottom:70px;
+  }
+  .hero-title{font-size:clamp(2.2rem,10vw,3.4rem);}
+  .hero-sub{font-size:1rem;}
+  .hero-btns{gap:12px;}
+  .btn-gold,.btn-glass,.btn-outline{padding:13px 26px;font-size:.84rem;}
+
+  .about-grid{grid-template-columns:1fr;gap:40px;}
+  .about-left p{max-width:100%;}
+  .stats-board{grid-template-columns:1fr 1fr;}
+
+  .srv-filter{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    padding-bottom:6px;
+    scrollbar-width:none;
+  }
+  .srv-filter::-webkit-scrollbar{display:none;}
+  .srv-filter-btn{flex:0 0 auto;}
+
+  .srv-card{flex:0 0 270px;}
+
+  .proc-step{width:210px;}
+  .exp-card{width:210px;}
+  .tech-card{width:250px;}
+
+  .contact-card{padding:28px 22px;}
+  #contactForm .cf-row{grid-template-columns:1fr;gap:0;}
+
+  .final-cta h2{font-size:clamp(1.8rem,7vw,2.6rem);}
+
+  .mm-panel{width:min(360px,90vw);}
+
+  .footer-grid{grid-template-columns:1fr;gap:32px;}
+  .footer-grid .f-col:last-child{grid-column:auto;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+
+  .lb-prev,.lb-next{font-size:2.4rem;padding:8px 12px;}
+  .lb-body{max-width:100%;}
+  .lb-title{font-size:1.4rem;}
+}
+
+/* ---------- 480px ---------- */
+@media (max-width:480px){
+  :root{--nav-h-mobile:56px;}
+  .container{padding:0 18px;}
+
+  h2{font-size:clamp(1.6rem,7vw,2.1rem);}
+  .tag{font-size:.66rem;letter-spacing:.18em;}
+
+  .hero-badge{font-size:.66rem;padding:7px 14px;}
+  .hero-title{font-size:clamp(1.9rem,11vw,2.8rem);}
+  .hero-sub{font-size:.94rem;}
+  .hero-btns{flex-direction:column;align-items:stretch;}
+  .hero-btns .btn-gold,
+  .hero-btns .btn-glass{justify-content:center;text-align:center;}
+
+  .stats-board{grid-template-columns:1fr 1fr;gap:12px;}
+  .stat-card{padding:22px 14px;}
+  .stat-num{font-size:1.8rem;}
+  .stat-plus{font-size:1.3rem;}
+  .stat-card p{font-size:.68rem;}
+
+  .about-chips{gap:8px;}
+  .chip{font-size:.66rem;padding:6px 12px;}
+
+  .srv-card{flex:0 0 250px;}
+  .srv-img{height:160px;}
+  .srv-card h3{font-size:1.1rem;}
+
+  .proc-step{width:180px;}
+  .proc-icon{width:70px;height:70px;}
+  .proc-icon svg{width:36px;height:36px;}
+  .proc-arrow{width:48px;}
+
+  .exp-card{width:180px;padding:24px 18px;}
+  .tech-card{width:220px;padding:22px 18px;}
+  .tech-abbr{width:80px;height:80px;font-size:1.2rem;}
+
+  .cert-card{width:240px;}
+  .cert-image{height:160px;}
+
+  .num-item{width:220px;padding:0 20px;}
+  .num-val{font-size:2.2rem;}
+  .num-plus{font-size:1.6rem;}
+
+  .ind-card{width:130px;}
+  .ind-icon{width:76px;height:76px;}
+  .ind-icon img{width:48px;height:48px;}
+
+  .proj-card{flex:0 0 270px;}
+  .proj-num{font-size:3.4rem;}
+
+  .rev-card{width:280px;padding:28px 22px;}
+  .rev-card p{font-size:.92rem;}
+
+  .contact-card{padding:24px 18px;}
+  .cf-field input,.cf-field select,.cf-field textarea{font-size:.88rem;}
+
+  .footer-bottom{font-size:.72rem;}
+}
+
+/* ---------- 360px ---------- */
+@media (max-width:360px){
+  .container{padding:0 14px;}
+
+  .stats-board{grid-template-columns:1fr;}
+  .stat-card{padding:20px;}
+
+  .srv-card{flex:0 0 230px;}
+  .proc-step{width:160px;}
+  .exp-card{width:160px;}
+  .tech-card{width:200px;}
+  .cert-card{width:220px;}
+  .ind-card{width:120px;}
+  .proj-card{flex:0 0 240px;}
+  .rev-card{width:260px;}
+
+  .mm-panel{width:100vw;}
+  .hero-title{font-size:1.75rem;}
+  .hero-sub{font-size:.88rem;}
+  .btn-gold,.btn-glass,.btn-outline{padding:12px 20px;font-size:.8rem;}
+}
+
+/* ---------- LANDSCAPE (short height) ---------- */
+@media (max-height:500px) and (orientation:landscape){
+  .hero{
+    min-height:auto;
+    padding-top:calc(var(--nav-h-mobile) + 30px);
+    padding-bottom:50px;
+  }
+  .hero-title{font-size:clamp(1.8rem,6vw,2.6rem);}
+  .hero-sub{font-size:.9rem;margin-bottom:24px;}
+  .scroll-cue{display:none;}
+  .preloader-ring{width:90px;height:90px;}
+  .preloader-logo{width:60px;height:60px;}
+  section{padding:50px 0;}
+}
+
+/* ---------- PRINT ---------- */
+@media print{
+  .navbar,
+  .hamburger,
+  .mobile-menu,
+  .hero-video,
+  .scroll-cue,
+  .swipe-hint,
+  .lightbox,
+  .preloader,
+  .story-scroll,
+  .srv-filter,
+  .mm-backdrop,
+  .mm-panel{
+    display:none !important;
+  }
+  body{
+    background:#fff !important;
+    color:#000 !important;
+  }
+  *{
+    background:transparent !important;
+    box-shadow:none !important;
+    color:#000 !important;
+    -webkit-text-fill-color:#000 !important;
+    animation:none !important;
+    transition:none !important;
+  }
+  .hero{
+    min-height:auto;
+    padding:20px 0;
+  }
+  .hero-overlay{display:none;}
+  section{
+    page-break-inside:avoid;
+    padding:20px 0;
+    border-bottom:1px solid #ccc;
+  }
+  .gold,
+  .stat-plus,
+  .num-plus{
+    color:#000 !important;
+    -webkit-text-fill-color:#000 !important;
+  }
+  img{max-width:100%;}
+  a{text-decoration:none;color:#000;}
+  a[href]::after{content:" (" attr(href) ")";font-size:.8em;color:#555;}
+}
